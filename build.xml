@@ -1,0 +1,12 @@
+<project name="AccelerometerService" default="build" basedir=".">
+<target name="clean">
+<delete dir="org"/>
+<delete file="org.webosinternals.accelservce.jar"/>
+</target>
+<target name="build">
+<javac classpath="serviceframework.jar:lunaservice.jar:json.jar:Utils.jar" srcdir="." destdir="."/>
+</target>
+<target name="jar" depends="build">
+<jar destfile="org.webosinternals.accelservice.jar" basedir="." includes="**/*.class"/>
+</target>
+</project>
