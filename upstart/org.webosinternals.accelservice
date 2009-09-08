@@ -34,8 +34,3 @@ script
 end script
 
 #respawn
-start on started java-serviceboot
-script
-/usr/bin/luna-helper 'luna://com.palm.vm/launch' '{"serviceName":"org.webosinternals.accelservice","className":"org.webosinternals.accelservice.AccelService"}'
-end script
-respawn
