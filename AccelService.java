@@ -153,4 +153,13 @@ public class AccelService extends LunaServiceThread {
       msg.respondError(ErrorMessage.ERROR_CODE_INVALID_PARAMETER, 
           "Need period in ms");
     }
+
+    @LunaServiceThread.PublicMethod
+	public void status(ServiceMessage msg)
+	throws JSONException, LSException {
+	JSONObject reply = new JSONObject();
+	reply.put("returnValue",true);
+	msg.respond(reply.toString());
+    }
+
 }

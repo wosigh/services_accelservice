@@ -1,0 +1,41 @@
+description "Accelerometer Service"
+
+start on started java-serviceboot
+
+#console output
+
+script
+   logger "org.webosinternals.accelservice upstart: script called"
+
+   sleep 10
+   logger "org.webosinternals.accelservice upstart: delay done"
+
+   returnTrue=0
+   tries=0
+   while [ $returnTrue -eq 0 -a $tries -le 20 ]
+   do
+      returnVal=$(luna-send -n 1 luna://org.webosinternals.accelservice/status '{}' 2>&1)
+
+      logger "org.webosinternals.accelservice upstart: returnVal is $returnVal"
+
+      tries=`expr $tries + 1`
+      if [ "$returnVal" = "** Message: serviceResponse Handling: 2, {\"returnValue\":true}" ]
+      then
+         returnTrue=1
+      else
+         sleep 10
+      fi
+   done
+
+   logger "org.webosinternals.accelservice upstart: $returnTrue"
+   logger "org.webosinternals.accelservice upstart: $tries"
+
+   logger "org.webosinternals.accelservice upstart: done"
+end script
+
+#respawn
+start on started java-serviceboot
+script
+/usr/bin/luna-helper 'luna://com.palm.vm/launch' '{"serviceName":"org.webosinternals.accelservice","className":"org.webosinternals.accelservice.AccelService"}'
+end script
+respawn

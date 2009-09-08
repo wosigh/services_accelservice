@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Stop the service
+/sbin/stop org.webosinternals.accelservice
+
+# Remove the java dbus service
+rm -f /usr/lib/luna/java/org.webosinternals.accelservice.jar
+rm -f /usr/share/dbus-1/system-services/org.webosinternals.accelservice.service
+
+# Remove the upstart script
+rm -f /etc/event.d/org.webosinternals.accelservice
+
+exit 0
