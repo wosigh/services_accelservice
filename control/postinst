@@ -10,4 +10,10 @@ ln -s /var/usr/share/dbus-1/system-services/org.webosinternals.accelservice.serv
 rm -f /etc/event.d/org.webosinternals.accelservice
 cp /var/etc/event.d/org.webosinternals.accelservice /etc/event.d/org.webosinternals.accelservice
 
+# Restart the service handler (this also starts this service)
+if [ -z "$IPKG_OFFLINE_ROOT" ]; then # Defined by recent installers that also support flags.
+    /sbin/stop java-serviceboot
+    /sbin/start java-serviceboot
+fi
+
 exit 0
