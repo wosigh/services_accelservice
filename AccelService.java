@@ -33,7 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AccelService extends LunaServiceThread {
-  private String myVersion = "0.0.3";
+  private String myVersion = "0.3.1";
 
   private final String POLL_PATH = 
     "/sys/class/input/input5/poll_interval";
